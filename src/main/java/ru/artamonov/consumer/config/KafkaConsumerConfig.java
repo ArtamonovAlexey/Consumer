@@ -16,7 +16,6 @@ import org.springframework.kafka.support.converter.BatchMessagingMessageConverte
 import org.springframework.kafka.support.converter.StringJsonMessageConverter;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 import ru.artamonov.consumer.entity.Worker;
-import ru.artamonov.consumer.kafka.KafkaEntity;
 
 import java.util.HashMap;
 import java.util.Map;
