@@ -6,4 +6,8 @@ import ru.artamonov.consumer.entity.Worker;
 
 @Repository
 public interface WorkerRepository extends JpaRepository<Worker, Long> {
+
+    Worker save(Worker worker);
+
+    void deleteById(Long id);
 }
