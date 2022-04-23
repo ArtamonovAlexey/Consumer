@@ -2,9 +2,6 @@ package ru.artamonov.consumer.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.minidev.json.parser.JSONParser;
-import net.minidev.json.parser.ParseException;
-import ru.artamonov.consumer.entity.Worker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,5 +56,4 @@ public class JsonConvertor {
 
         return new Object();
     }
-
 }

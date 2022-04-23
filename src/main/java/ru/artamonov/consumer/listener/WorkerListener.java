@@ -32,17 +32,14 @@ public class WorkerListener {
     }
 
     @KafkaListener(id = "Workers", topics = "workerListTopic", containerFactory = "batchFactory")
-    public void listenWorkers(List<ConsumerRecord> consumerRecordList) {
-        for (ConsumerRecord consumerRecord : consumerRecordList) {
-
+    public void listenWorkers(List<ConsumerRecord<String, String>> consumerRecordList) {
+        for (ConsumerRecord<String, String> consumerRecord : consumerRecordList) {
             Object objectJson = consumerRecord.value();
+            String jsonString = objectJson.toString();
 
-            String json = objectJson.toString();
-
-            List<String> jsonList = JsonConvertor.getObjectsAsString(json);
-
-            for (String jsn : jsonList) {
-                save((Worker) JsonConvertor.convertTo(jsn, Worker.class));
+            List<String> jsonList = JsonConvertor.getObjectsAsString(jsonString);
+            for (String json : jsonList) {
+                save((Worker) JsonConvertor.convertTo(json, Worker.class));
             }
         }
     }
@@ -50,15 +47,5 @@ public class WorkerListener {
     @Transactional
     public void save(Worker worker) {
         repository.save(worker);
-    }
-
-    @Transactional
-    public void update(Worker newWorker) {
-        repository.save(newWorker);
-    }
-
-    @Transactional
-    public void delete(Worker worker) {
-        repository.deleteById(worker.getId());
     }
 }

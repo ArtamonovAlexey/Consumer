@@ -19,9 +19,4 @@ public class Worker {
 
     public Worker() {
     }
-
-    public Worker(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
 }
