@@ -21,14 +21,14 @@ public class WorkerListener {
         this.repository = repository;
     }
 
-    @KafkaListener(id = "Worker", topics = "workerTopic")
+    @KafkaListener(id = "Worker", topics = "workerTopic", containerFactory = "singleFactory")
     public void listenWorker(ConsumerRecord<String, Worker> consumerRecord) {
         Object objectJson = consumerRecord.value();
 
         String json = objectJson.toString();
         Worker worker = (Worker) JsonConvertor.convertTo(json, Worker.class);
 
-        System.out.println(worker);
+        save(worker);
     }
 
     @KafkaListener(id = "Workers", topics = "workerListTopic", containerFactory = "batchFactory")
